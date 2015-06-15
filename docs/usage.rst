@@ -4,4 +4,10 @@ Usage
 
 To use fuzzyfinder in a project::
 
-    import fuzzyfinder
+    from fuzzyfinder import fuzzyfinder
+
+    collection = ['abcd', 'defabca', 'aagbec', 'xyz', 'qux']
+
+    suggestions = fuzzyfinder('abc', collection)
+
+    print list(suggestions)
