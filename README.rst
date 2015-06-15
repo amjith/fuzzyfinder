@@ -35,7 +35,7 @@ Usage
     >>> suggestions = fuzzyfinder('abc', ['abcd', 'defabca', 'aagbec', 'xyz', 'qux'])
 
     >>> list(suggestions)
-    ['abcd', 'aagbec', 'defabca']
+    ['abcd', 'defabca', 'aagbec']
 
 Features
 --------
