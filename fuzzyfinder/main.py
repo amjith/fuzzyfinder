@@ -17,7 +17,7 @@ def fuzzyfinder(text, collection):
     """
     suggestions = []
     regex = '.*?'.join(map(re.escape, text))
-    pat = re.compile('(%s)' % regex)
+    pat = re.compile('%s' % regex)
     for item in sorted(collection):
         r = pat.search(item)
         if r:
