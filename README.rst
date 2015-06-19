@@ -43,3 +43,12 @@ Features
 * Simple, easy to understand code.
 * No external dependencies, just the python std lib.
 
+How does it work
+----------------
+
+TODO: Add a link to the algorithm description.
+
+Similar Projects
+----------------
+
+* https://github.com/seatgeek/fuzzywuzzy - Fuzzy matching and auto-correction using levenshtein distance.
