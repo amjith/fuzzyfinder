@@ -1,12 +1,17 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-
+import re
+import ast
 try:
     from setuptools import setup
 except ImportError:
     from distutils.core import setup
 
+_version_re = re.compile(r'__version__\s+=\s+(.*)')
+
+with open('fuzzyfinder/__init__.py', 'rb') as f:
+    version = str(ast.literal_eval(_version_re.search(
+        f.read().decode('utf-8')).group(1)))
 
 with open('README.rst') as readme_file:
     readme = readme_file.read()
@@ -23,7 +28,7 @@ test_requirements = [
 
 setup(
     name='fuzzyfinder',
-    version='1.0.0',
+    version=version,
     description="Fuzzy Finder implemented in Python.",
     long_description=readme + '\n\n' + history,
     author="Amjith Ramanujam",
@@ -40,7 +45,7 @@ setup(
     zip_safe=False,
     keywords='fuzzyfinder',
     classifiers=[
-        'Development Status :: 5 - Production/Stable'
+        'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: BSD License',
         'Natural Language :: English',
