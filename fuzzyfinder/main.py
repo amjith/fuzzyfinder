@@ -16,10 +16,10 @@ def fuzzyfinder(text, collection):
             input.
     """
     suggestions = []
-    regex = '.*?'.join(map(re.escape, text))
-    pat = re.compile('%s' % regex)
+    pat = '.*?'.join(map(re.escape, text))
+    regex = re.compile('%s' % pat)
     for item in sorted(collection):
-        r = pat.search(item)
+        r = regex.search(item)
         if r:
             suggestions.append((len(r.group()), r.start(), item))
 
