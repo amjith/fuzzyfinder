@@ -9,10 +9,13 @@ fuzzyfinder
         :target: https://pypi.python.org/pypi/fuzzyfinder
 
 
-Fuzzy Finder implemented in Python.
+Fuzzy Finder implemented in Python. Matches partial string entries from a list
+of strings. Works similar to fuzzy finder in SublimeText and Vim's Ctrl-P
+plugin.
 
-* Free software: BSD license
 * Documentation: https://fuzzyfinder.readthedocs.org.
+
+.. image:: screenshots/pgcli-fuzzy.gif
 
 Quick Start
 -----------
