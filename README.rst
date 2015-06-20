@@ -15,7 +15,7 @@ plugin.
 
 * Documentation: https://fuzzyfinder.readthedocs.org.
 
-.. image:: screenshots/pgcli-fuzzy.gif
+.. image:: https://raw.githubusercontent.com/amjith/fuzzyfinder/master/screenshots/pgcli-fuzzy.gif 
 
 Quick Start
 -----------
