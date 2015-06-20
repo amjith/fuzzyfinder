@@ -14,6 +14,7 @@ of strings. Works similar to fuzzy finder in SublimeText and Vim's Ctrl-P
 plugin.
 
 * Documentation: https://fuzzyfinder.readthedocs.org.
+* Source: https://github.com/amjith/fuzzyfinder
 
 .. image:: https://raw.githubusercontent.com/amjith/fuzzyfinder/master/screenshots/pgcli-fuzzy.gif 
 
