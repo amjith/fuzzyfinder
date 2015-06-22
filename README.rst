@@ -50,7 +50,7 @@ Features
 How does it work
 ----------------
 
-TODO: Add a link to the algorithm description.
+Blog post describing the algorithm: http://blog.amjith.com/fuzzyfinder-in-10-lines-of-python
 
 Similar Projects
 ----------------
