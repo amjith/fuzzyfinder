@@ -19,6 +19,8 @@ def collection():
             'user_group.doc',
             'users.txt',
             'accounts.txt',
+            '123.py',
+            'test123test.py'
             ]
 
 def test_substring_match(collection):
@@ -49,4 +51,10 @@ def test_fuzzy_match_greedy(collection):
     text = 'user'
     results = fuzzyfinder(text, collection)
     expected = ['user_group.doc', 'users.txt', 'api_user.doc']
+    assert list(results) == expected
+
+def test_fuzzy_integer_input(collection):
+    text = 123
+    results = fuzzyfinder(text, collection)
+    expected = ['123.py', 'test123test.py']
     assert list(results) == expected
