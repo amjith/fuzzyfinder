@@ -23,6 +23,18 @@ def collection():
             'test123test.py'
             ]
 
+@pytest.fixture
+def dict_collection():
+    return [
+            {'name': 'migrations.py'},
+            {'name': 'django_migrations.py'},
+            {'name': 'django_admin_log.py'},
+            {'name': 'api_user.doc'},
+            {'name': 'user_group.doc'},
+            {'name': 'users.txt'},
+            {'name': 'accounts.txt'},
+            ]
+
 def test_substring_match(collection):
     text = 'txt'
     results = fuzzyfinder(text, collection)
@@ -57,4 +69,9 @@ def test_fuzzy_integer_input(collection):
     text = 123
     results = fuzzyfinder(text, collection)
     expected = ['123.py', 'test123test.py']
+
+def test_accessor(dict_collection):
+    text = 'user'
+    results = fuzzyfinder(text, dict_collection, lambda x: x['name'])
+    expected = [{'name': 'user_group.doc'}, {'name': 'users.txt'}, {'name': 'api_user.doc'}]
     assert list(results) == expected

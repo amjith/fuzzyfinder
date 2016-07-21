@@ -3,24 +3,23 @@ import re
 from . import export
 
 @export
-def fuzzyfinder(text, collection):
+def fuzzyfinder(input, collection, accessor=lambda x: x):
     """
     Args:
-        text (str): A partial string which is typically entered by a user.
+        input (str): A partial string which is typically entered by a user.
         collection (iterable): A collection of strings which will be filtered
-                               based on the input `text`.
+                               based on the `input`.
 
     Returns:
         suggestions (generator): A generator object that produces a list of
-            suggestions narrowed down from `collections` using the `text`
-            input.
+            suggestions narrowed down from `collection` using the `input`.
     """
     suggestions = []
-    text = str(text) if not isinstance(text, str) else text
-    pat = '.*?'.join(map(re.escape, text))
+    input = str(input) if not isinstance(input, str) else input
+    pat = '.*?'.join(map(re.escape, input))
     regex = re.compile(pat)
     for item in collection:
-        r = regex.search(item)
+        r = regex.search(accessor(item))
         if r:
             suggestions.append((len(r.group()), r.start(), item))
 
