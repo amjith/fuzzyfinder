@@ -1,31 +1,36 @@
-def search(needle, haystack):
-    found_index = 0
-    for i, c in enumerate(needle):
-        found_index = haystack.find(c, found_index)
-        if found_index == -1:
-            return (False, None, None)
-        if i == 0:
-            start = found_index
-    end = found_index + 1
-    return (True, start, end)
+def make_searcher(query):
+    if len(query) == 0:
+        return lambda x: (True, 0, 0)
 
-def fuzzyfinder(input, collection, accessor=lambda x: x):
-    """
-    Args:
-        input (str): A partial string which is typically entered by a user.
-        collection (iterable): A collection of strings which will be filtered
-                               based on the `input`.
+    head = query[0]
+    tail = query[1:]
 
-    Returns:
-        suggestions (generator): A generator object that produces a list of
-            suggestions narrowed down from `collection` using the `input`.
-    """
+    def matcher(datum):
+        running = 0
+        first = datum.find(head)
+        if first == -1:
+            return (False, -1, -1)
+        datum = datum[first+1:]
+
+        for char in tail:
+            index = datum.find(char)
+            if index == -1:
+                return (False, -1, -1)
+            running += index
+            datum = datum[index+1:]
+
+        return (True, running, first)
+
+    return matcher
+
+
+def fuzzyfinder(query, data):
     suggestions = []
-    input = str(input) if not isinstance(input, str) else input
-    for item in collection:
-        searchable_item = accessor(item)
-        found, start, end = search(input, searchable_item)
-        if found:
-            suggestions.append(((end - start), start, searchable_item, item))
+    searcher = make_searcher(query)
 
-    return (x[-1] for x in sorted(suggestions, key=lambda x: x[0:-1]))
+    for item in data:
+        matched, distance, first = searcher(item)
+        if not matched:
+            continue
+        suggestions.append((distance, first, item))
+    return [x for _, _, x in sorted(suggestions)]
