@@ -21,6 +21,6 @@ def fuzzyfinder(input, collection, accessor=lambda x: x):
     for item in collection:
         r = regex.search(accessor(item))
         if r:
-            suggestions.append((len(r.group()), r.start(), item))
+            suggestions.append((len(r.group()), r.start(), accessor(item), item))
 
-    return (z for _, _, z in sorted(suggestions))
+    return (z[-1] for z in sorted(suggestions))
