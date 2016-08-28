@@ -1,9 +1,15 @@
-# -*- coding: utf-8 -*-
-import re
-from . import export
+def search(needle, haystack):
+    found_index = 0
+    for i, c in enumerate(needle):
+        found_index = haystack.find(c, found_index)
+        if found_index == -1:
+            return (False, None, None)
+        if i == 0:
+            start = found_index
+    end = found_index + 1
+    return (True, start, end)
 
-@export
-def fuzzyfinder(input, collection, accessor=lambda x: x):
+def fuzzyfinder(input, collection):
     """
     Args:
         input (str): A partial string which is typically entered by a user.
@@ -16,11 +22,9 @@ def fuzzyfinder(input, collection, accessor=lambda x: x):
     """
     suggestions = []
     input = str(input) if not isinstance(input, str) else input
-    pat = '.*?'.join(map(re.escape, input))
-    regex = re.compile(pat)
     for item in collection:
-        r = regex.search(accessor(item))
-        if r:
-            suggestions.append((len(r.group()), r.start(), item))
+        found, start, end = search(input, item)
+        if found:
+            suggestions.append(((end - start), start, item))
 
-    return (z for _, _, z in sorted(suggestions))
+    return (x[-1] for x in sorted(suggestions))
