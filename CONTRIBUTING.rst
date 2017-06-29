@@ -67,7 +67,7 @@ Ready to contribute? Here's how to set up `fuzzyfinder` for local development.
 
    Now you can make your changes locally.
 
-5. When you're done making changes, check that your changes pass the tests. This project uses py.test for testing and tox for running the tests on multiple versions of python.
+5. When you're done making changes, check that your changes pass the tests. This project uses py.test for testing and tox for running the tests on multiple versions of python::
 
     $ py.test
     $ tox
