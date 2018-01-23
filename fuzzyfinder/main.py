@@ -17,7 +17,7 @@ def fuzzyfinder(input, collection, accessor=lambda x: x):
     suggestions = []
     input = str(input) if not isinstance(input, str) else input
     pat = '.*?'.join(map(re.escape, input))
-    regex = re.compile(pat)
+    regex = re.compile(pat, re.IGNORECASE)
     for item in collection:
         r = regex.search(accessor(item))
         if r:
