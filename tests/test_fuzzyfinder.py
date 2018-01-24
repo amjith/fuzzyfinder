@@ -24,6 +24,16 @@ def collection():
             ]
 
 @pytest.fixture
+def cased_collection():
+    return ['MIGRATIONS.py',
+            'django_MiGRations.py',
+            'django_admin_log.py',
+            'migrations.doc',
+            'user_group.doc',
+            'users.txt',
+            ]
+
+@pytest.fixture
 def dict_collection():
     return [
             {'name': 'migrations.py'},
@@ -39,6 +49,12 @@ def test_substring_match(collection):
     text = 'txt'
     results = fuzzyfinder(text, collection)
     expected = ['users.txt', 'accounts.txt']
+    assert list(results) == expected
+
+def test_case_insensitive_substring_match(cased_collection):
+    text = 'miGr'
+    results = fuzzyfinder(text, cased_collection)
+    expected = ['MIGRATIONS.py', 'migrations.doc', 'django_MiGRations.py']
     assert list(results) == expected
 
 def test_substring_match_with_dot(collection):
