@@ -3,7 +3,7 @@
 Changelog
 ---------
 
-1.1.0 (2017-01-25)
+2.0.0 (2017-01-25)
 ---------------------
 
 * Case insensitive matching. (Gokul Soumya)
