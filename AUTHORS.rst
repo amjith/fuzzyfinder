@@ -2,12 +2,14 @@
 Credits
 =======
 
-Development Lead
+Project Lead
 ----------------
 
-* Amjith Ramanujam <amjith.r@gmail.com>
+* Amjith Ramanujam
 
 Contributors
 ------------
 
-None yet. Why not be the first?
+* Gokul Soumya
+* Luke Murphy
+* Matheus Rosa
