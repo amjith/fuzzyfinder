@@ -17,7 +17,7 @@ def fuzzyfinder(input, collection, accessor=lambda x: x):
     suggestions = []
     input = str(input) if not isinstance(input, str) else input
     pat = '.*?'.join(map(re.escape, input))
-    pat = '(?=({}))'.format(pat)   # lookahead regex to manage overlapping matches
+    pat = '(?=({0}))'.format(pat)   # lookahead regex to manage overlapping matches
     regex = re.compile(pat, re.IGNORECASE)
     for item in collection:
         r = list(regex.finditer(accessor(item)))
