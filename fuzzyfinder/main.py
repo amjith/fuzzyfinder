@@ -9,6 +9,9 @@ def fuzzyfinder(input, collection, accessor=lambda x: x):
         input (str): A partial string which is typically entered by a user.
         collection (iterable): A collection of strings which will be filtered
                                based on the `input`.
+        accessor (function): If the `collection` is not an iterable of strings,
+                             then use the accessor to fetch the string that
+                             will be used for fuzzy matching.
 
     Returns:
         suggestions (generator): A generator object that produces a list of
