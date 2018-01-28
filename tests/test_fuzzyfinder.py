@@ -58,10 +58,10 @@ def test_case_insensitive_substring_match(cased_collection):
     assert list(results) == expected
 
 def test_use_shortest_match_if_matches_overlap():
-    collection_list = ['fuuz', 'fuz', 'vfuzzzzz']
+    collection_list = ['fuuz', 'fuz', 'fufuz']
     text = 'fuz'
     results = fuzzyfinder(text, collection_list)
-    expected = ['fuz', 'vfuzzzzz', 'fuuz']
+    expected = ['fuz', 'fufuz', 'fuuz']
     assert list(results) == expected
 
 def test_substring_match_with_dot(collection):
