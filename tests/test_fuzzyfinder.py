@@ -102,6 +102,6 @@ def test_accessor(dict_collection):
 def test_no_alpha_num_sort():
     collection = ['zzfuz', 'nnfuz', 'aafuz', 'ttfuz', 'wow!', 'python']
     text = 'fuz'
-    results = fuzzyfinder(text, collection, alpha_num_sort=False)
+    results = fuzzyfinder(text, collection, sort_results=False)
     expected = ['zzfuz', 'nnfuz', 'aafuz', 'ttfuz']
     assert list(results) == expected
