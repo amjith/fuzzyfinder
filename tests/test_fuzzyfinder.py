@@ -98,3 +98,10 @@ def test_accessor(dict_collection):
     results = fuzzyfinder(text, dict_collection, lambda x: x['name'])
     expected = [{'name': 'user_group.doc'}, {'name': 'users.txt'}, {'name': 'api_user.doc'}]
     assert list(results) == expected
+
+def test_no_alpha_num_sort():
+    collection = ['zzfuz', 'nnfuz', 'aafuz', 'ttfuz', 'wow!', 'python']
+    text = 'fuz'
+    results = fuzzyfinder(text, collection, sort_results=False)
+    expected = ['zzfuz', 'nnfuz', 'aafuz', 'ttfuz']
+    assert list(results) == expected
