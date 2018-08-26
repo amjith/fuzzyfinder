@@ -16,7 +16,7 @@ plugin.
 * Documentation: https://fuzzyfinder.readthedocs.org.
 * Source: https://github.com/amjith/fuzzyfinder
 
-.. image:: https://raw.githubusercontent.com/amjith/fuzzyfinder/master/screenshots/pgcli-fuzzy.gif 
+.. image:: https://raw.githubusercontent.com/amjith/fuzzyfinder/master/screenshots/pgcli-fuzzy.gif
 
 Quick Start
 -----------
@@ -25,7 +25,7 @@ Quick Start
 
     $ pip install fuzzyfinder
 
-    or 
+    or
 
     $ easy_install fuzzyfinder
 
@@ -36,10 +36,24 @@ Usage
 
     >>> from fuzzyfinder import fuzzyfinder
 
-    >>> suggestions = fuzzyfinder('abc', ['abcd', 'defabca', 'aagbec', 'xyz', 'qux'])
-
+    >>> suggestions = fuzzyfinder('abc', ['defabca', 'abcd', 'aagbec', 'xyz', 'qux'])
     >>> list(suggestions)
     ['abcd', 'defabca', 'aagbec']
+
+    >>> # Use a user-defined function to obtain the string against which fuzzy matching is done
+    >>> collection = ['aa bbb', 'aca xyz', 'qx ala', 'xza az', 'bc aa', 'xy abca']
+    >>> suggestions = fuzzyfinder('aa', collection, accessor=lambda x: x.split()[1])
+    >>> list(suggestions)
+    ['bc aa', 'qx ala', 'xy abca']
+
+    >>> suggestions = fuzzyfinder('aa', ['aac', 'aaa', 'aab', 'xyz', 'ada'])
+    >>> list(suggestions)
+    ['aaa', 'aab', 'aac', 'ada']
+
+    >>> # Preserve original order of elements if matches have same rank
+    >>> suggestions = fuzzyfinder('aa', ['aac', 'aaa', 'aab', 'xyz', 'ada'], sort_results=False)
+    >>> list(suggestions)
+    ['aac', 'aaa', 'aab', 'ada']
 
 Features
 --------
