@@ -32,7 +32,7 @@ Quick Start
 Usage
 -----
 
-::
+.. code:: python
 
     >>> from fuzzyfinder import fuzzyfinder
 
