@@ -57,6 +57,12 @@ def test_case_insensitive_substring_match(cased_collection):
     expected = ['MIGRATIONS.py', 'migrations.doc', 'django_MiGRations.py']
     assert list(results) == expected
 
+def test_case_sensitive_substring_match(cased_collection):
+    text = 'MiGR'
+    results = fuzzyfinder(text, cased_collection, ignore_case=False)
+    expected = ['django_MiGRations.py']
+    assert list(results) == expected
+
 def test_use_shortest_match_if_matches_overlap():
     collection_list = ['fuuz', 'fuz', 'fufuz']
     text = 'fuz'
