@@ -1,4 +1,0 @@
-pytest
-pytest-cov
-coveralls
-wheel==0.23.0

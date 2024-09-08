@@ -1,0 +1,29 @@
+[project]
+name = "fuzzyfinder"
+dynamic = ["version"]
+description = "Fuzzy Finder implemented in Python."
+readme = "README.rst"
+requires-python = ">=3.8"
+license = {text = "BSD"}
+authors = [
+    {name = "Amjith Ramanujam", email = "amjith.r@gmail.com"}
+]
+urls = { "homepage" = "https://github.com/amjith/fuzzyfinder" }
+
+[project.optional-dependencies]
+dev = [
+    "coverage>=7.2.7",
+    "pytest>=7.4.4",
+    "pytest-cov>=4.1.0",
+    "pdbpp>=0.10.3",
+]
+
+[tool.setuptools.packages.find]
+exclude = ["screenshots"]
+
+[tool.setuptools.dynamic]
+version = {attr = "fuzzyfinder.__version__"}
+
+[tool.ruff]
+line-length = 140
+exclude = ["docs"]
