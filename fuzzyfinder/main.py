@@ -2,10 +2,9 @@
 import re
 from . import export
 
+
 @export
-def fuzzyfinder(
-    input, collection, accessor=lambda x: x, sort_results=True, ignore_case=True
-):
+def fuzzyfinder(input, collection, accessor=lambda x: x, sort_results=True, ignore_case=True):
     """
     Args:
         input (str): A partial string which is typically entered by a user.
@@ -30,13 +29,13 @@ def fuzzyfinder(
     """
     suggestions = []
     input = str(input) if not isinstance(input, str) else input
-    pat = '.*?'.join(map(re.escape, input))
-    pat = '(?=({0}))'.format(pat)   # lookahead regex to manage overlapping matches
+    pat = ".*?".join(map(re.escape, input))
+    pat = "(?=({0}))".format(pat)  # lookahead regex to manage overlapping matches
     regex = re.compile(pat, re.IGNORECASE if ignore_case else 0)
     for item in collection:
         r = list(regex.finditer(accessor(item)))
         if r:
-            best = min(r, key=lambda x: len(x.group(1)))   # find shortest match
+            best = min(r, key=lambda x: len(x.group(1)))  # find shortest match
             suggestions.append((len(best.group(1)), best.start(), accessor(item), item))
 
     if sort_results:

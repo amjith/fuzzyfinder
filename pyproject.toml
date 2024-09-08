@@ -26,3 +26,4 @@ version = {attr = "fuzzyfinder.__version__"}
 
 [tool.ruff]
 line-length = 140
+exclude = ["docs"]
