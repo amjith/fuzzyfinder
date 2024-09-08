@@ -3,6 +3,13 @@
 Changelog
 ---------
 
+2.2.0 (2024-09-08)
+---------------------
+
+* Modernize the codebase.
+* Add a parameter to enable/disable case insensitivity.
+
+
 2.0.0 (2017-01-25)
 ---------------------
 
