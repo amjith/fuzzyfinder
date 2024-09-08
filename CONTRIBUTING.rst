@@ -55,29 +55,21 @@ Ready to contribute? Here's how to set up `fuzzyfinder` for local development.
 
     $ git clone git@github.com:your_name_here/fuzzyfinder.git
 
-3. Install your local copy into a virtualenv. Assuming you have virtualenvwrapper installed, this is how you set up your fork for local development::
-
-    $ mkvirtualenv fuzzyfinder
-    $ cd fuzzyfinder/
-    $ pip install -r dev-requirements.txt
-
-4. Create a branch for local development::
+3. Create a branch for local development::
 
     $ git checkout -b name-of-your-bugfix-or-feature
 
    Now you can make your changes locally.
 
-5. When you're done making changes, check that your changes pass the tests. This project uses py.test for testing and tox for running the tests on multiple versions of python::
+4. When you're done making changes, check that your changes pass the tests.
+   This project uses tox for running the tests on multiple versions of python::
 
-    $ py.test
     $ tox
 
-   To get tox, just pip install tox into your virtualenv.
-
-6. Commit your changes and push your branch to GitHub::
+5. Commit your changes and push your branch to GitHub::
 
     $ git add .
     $ git commit -m "Your detailed description of your changes."
     $ git push origin name-of-your-bugfix-or-feature
 
-7. Submit a pull request through the GitHub website.
+6. Submit a pull request through the GitHub website.
