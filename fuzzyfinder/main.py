@@ -1,10 +1,14 @@
 # -*- coding: utf-8 -*-
+from collections.abc import Iterable, Callable
+from typing import Any
 import re
 from . import export
 
 
 @export
-def fuzzyfinder(input, collection, accessor=lambda x: x, sort_results=True, ignore_case=True):
+def fuzzyfinder(
+    input: str, collection: Iterable[str], accessor: Callable[[Any], str] = lambda x: x, sort_results: bool = True, ignore_case: bool = True
+):
     """
     Args:
         input (str): A partial string which is typically entered by a user.
