@@ -4,8 +4,8 @@ help:
 	@echo "clean - remove all build, test, coverage and Python artifacts"
 	@echo "clean-build - remove build artifacts"
 	@echo "clean-pyc - remove Python file artifacts"
-	@echo "clean-test - remove test and coverage artifacts"
-	@echo "test - run tests on every Python version with tox"
+	@echo "clean-test - remove test, coverage and formatting artifacts"
+	@echo "test - run tests with tox and format with ruff"
 	@echo "docs - generate Sphinx HTML documentation, including API docs"
 
 clean: clean-build clean-pyc clean-test
@@ -29,6 +29,8 @@ clean-test:
 	rm -fr .tox/
 	rm -f .coverage
 	rm -fr htmlcov/
+	rm -fr .pytest_cache/
+	rm -fr .ruff_cache/
 
 test:
 	tox
