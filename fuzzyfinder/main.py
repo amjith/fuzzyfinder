@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-from collections.abc import Iterable, Callable
-from typing import Any
+from typing import Iterable, Callable, Any
 import re
 from . import export
 
