@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from typing import Iterable, Callable, Any
+from typing import Iterable, Iterator, Callable, Any
 import re
 from . import export
 
@@ -7,7 +7,7 @@ from . import export
 @export
 def fuzzyfinder(
     input: str, collection: Iterable[str], accessor: Callable[[Any], str] = lambda x: x, sort_results: bool = True, ignore_case: bool = True
-):
+) -> Iterator[str]:
     """
     Args:
         input (str): A partial string which is typically entered by a user.
