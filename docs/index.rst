@@ -37,6 +37,7 @@ __ http://blog.amjith.com/fuzzyfinder-in-10-lines-of-python
 
    installation
    usage
+   fuzzyfinder
 
 .. toctree::
    :maxdepth: 2
