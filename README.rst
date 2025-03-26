@@ -2,9 +2,6 @@
 fuzzyfinder
 ===============================
 
-.. image:: https://img.shields.io/travis/amjith/fuzzyfinder.svg
-        :target: https://travis-ci.org/amjith/fuzzyfinder
-
 .. image:: https://img.shields.io/pypi/v/fuzzyfinder.svg
         :target: https://pypi.python.org/pypi/fuzzyfinder
 
