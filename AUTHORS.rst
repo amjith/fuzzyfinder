@@ -1,4 +1,4 @@
-=======
+
 Credits
 =======
 
@@ -13,3 +13,4 @@ Contributors
 * Gokul Soumya
 * Luke Murphy
 * Matheus Rosa
+* Nace Zavrtanik
