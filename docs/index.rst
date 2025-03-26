@@ -23,31 +23,31 @@ SublimeText and Vim's Ctrl-P plugin.
 Some notable features of fuzzyfinder are:
 
 * **Simple**, easy to understand code.
-* **No external dependencies**, just the python standard library.
+* **No external dependencies**, just the Python standard library.
 
-An in-depth overview of the algorithm behind fuzzyfinder is given in `this blog
-post`__.
+An in-depth overview of the algorithm behind fuzzyfinder is available in
+`this blog post`__.
 
 __ http://blog.amjith.com/fuzzyfinder-in-10-lines-of-python
 
 
-Contents
---------
+.. toctree::
+   :maxdepth: 2
+   :caption: User Guide
+
+   installation
+   usage
 
 .. toctree::
    :maxdepth: 2
+   :caption: Development
 
-   readme
-   installation
-   usage
    contributing
    authors
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Versions
+
    history
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
 
