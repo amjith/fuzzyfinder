@@ -32,7 +32,7 @@ __ http://blog.amjith.com/fuzzyfinder-in-10-lines-of-python
 
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :caption: User Guide
 
    installation
