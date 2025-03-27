@@ -2,8 +2,8 @@
 Credits
 =======
 
-Project Lead
-----------------
+Project lead
+------------
 
 * Amjith Ramanujam
 
