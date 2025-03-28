@@ -68,4 +68,4 @@ Usage
 Similar Projects
 ----------------
 
-* https://github.com/seatgeek/fuzzywuzzy - Fuzzy matching and auto-correction using levenshtein distance.
+* https://github.com/seatgeek/thefuzz - Fuzzy matching and auto-correction using levenshtein distance.
