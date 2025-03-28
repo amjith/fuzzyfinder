@@ -46,7 +46,7 @@ Usage
 
     >>> from fuzzyfinder import fuzzyfinder
 
-    >>> suggestions = fuzzyfinder('abc', ['defabca', 'abcd', 'aagbec', 'xyz', 'qux'])
+    >>> suggestions = fuzzyfinder('abc', ['acb', 'defabca', 'abcd', 'aagbec', 'xyz', 'qux'])
     >>> list(suggestions)
     ['abcd', 'defabca', 'aagbec']
 
@@ -56,6 +56,19 @@ Usage
     >>> list(suggestions)
     ['bc aa', 'qx ala', 'xy abca']
 
+    >>> # With the appropriate accessor you can pass non-string collections, too
+    >>> collection = [1234, 5678, 7537, 888, 57, 77]
+    >>> suggestions = fuzzyfinder('57', collection, accessor=str)
+    >>> list(suggestions)
+    [57, 5678, 7537]
+
+    >>> # Make filtering case-sensitive
+    >>> collection = ['bAB', 'aaB', 'Aab', 'xyz', 'adb', 'aAb']
+    >>> suggestions = fuzzyfinder('Ab', collection, ignore_case=False)
+    >>> list(suggestions)
+    ['aAb', 'Aab']
+
+    >>> # By default, elements with matches of same rank are sorted alpha-numerically
     >>> suggestions = fuzzyfinder('aa', ['aac', 'aaa', 'aab', 'xyz', 'ada'])
     >>> list(suggestions)
     ['aaa', 'aab', 'aac', 'ada']
