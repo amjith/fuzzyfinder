@@ -1,33 +1,46 @@
-===============================
+===========
 fuzzyfinder
-===============================
+===========
 
 .. image:: https://img.shields.io/pypi/v/fuzzyfinder.svg
-        :target: https://pypi.python.org/pypi/fuzzyfinder
+   :target: https://pypi.python.org/pypi/fuzzyfinder
+
+.. image:: https://img.shields.io/badge/github-fuzzyfinder-brightgreen?logo=github
+   :alt: GitHub Badge
+   :target: https://github.com/amjith/fuzzyfinder
+
+.. image:: https://img.shields.io/badge/docs-fuzzyfinder-hotpink?logo=readthedocs&logoColor=white
+   :alt: ReadTheDocs Badge
+   :target: https://fuzzyfinder.readthedocs.io/
 
 
-Fuzzy Finder implemented in Python. Matches partial string entries from a list
-of strings. Works similar to fuzzy finder in SublimeText and Vim's Ctrl-P
-plugin.
-
-* Documentation: https://fuzzyfinder.readthedocs.org.
-* Source: https://github.com/amjith/fuzzyfinder
+**fuzzyfinder** is a fuzzy finder implemented in Python. It matches partial
+string entries from a list of strings, and works similar to the fuzzy finder in
+SublimeText and Vim's Ctrl-P plugin.
 
 .. image:: https://raw.githubusercontent.com/amjith/fuzzyfinder/master/screenshots/pgcli-fuzzy.gif
+
+Some notable features of fuzzyfinder are:
+
+* **Simple**, easy to understand code.
+* **No external dependencies**, just the Python standard library.
+
+An in-depth overview of the algorithm behind fuzzyfinder is available in
+`this blog post`__.
+
+__ http://blog.amjith.com/fuzzyfinder-in-10-lines-of-python
 
 Quick Start
 -----------
 
+Installation
+^^^^^^^^^^^^
 ::
 
     $ pip install fuzzyfinder
 
-    or
-
-    $ easy_install fuzzyfinder
-
 Usage
------
+^^^^^
 
 .. code:: python
 
@@ -51,17 +64,6 @@ Usage
     >>> suggestions = fuzzyfinder('aa', ['aac', 'aaa', 'aab', 'xyz', 'ada'], sort_results=False)
     >>> list(suggestions)
     ['aac', 'aaa', 'aab', 'ada']
-
-Features
---------
-
-* Simple, easy to understand code.
-* No external dependencies, just the python std lib.
-
-How does it work
-----------------
-
-Blog post describing the algorithm: http://blog.amjith.com/fuzzyfinder-in-10-lines-of-python
 
 Similar Projects
 ----------------
