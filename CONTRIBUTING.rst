@@ -7,10 +7,10 @@ little bit helps, and credit will always be given.
 
 You can contribute in many ways:
 
-Types of Contributions
+Types of contributions
 ----------------------
 
-Report Bugs
+Report bugs
 ~~~~~~~~~~~
 
 Report bugs at https://github.com/amjith/fuzzyfinder/issues.
@@ -21,31 +21,31 @@ If you are reporting a bug, please include:
 * Any details about your local setup that might be helpful in troubleshooting.
 * Detailed steps to reproduce the bug.
 
-Fix Bugs
+Fix bugs
 ~~~~~~~~
 
-Look through the GitHub issues for bugs. Anything tagged with "bug"
-is open to whoever wants to implement it.
+Look through the GitHub issues for bugs. Anything tagged with `bug`
+is open to whomever wants to implement it.
 
-Implement Features
+Implement features
 ~~~~~~~~~~~~~~~~~~
 
-Look through the GitHub issues for features. Anything tagged with "feature"
-is open to whoever wants to implement it.
+Look through the GitHub issues for features. Anything tagged with `feature`
+is open to whomever wants to implement it.
 
-Write Documentation
+Write documentation
 ~~~~~~~~~~~~~~~~~~~
 
 fuzzyfinder could always use more documentation, whether as part of the
 official fuzzyfinder docs, in docstrings, or even on the web in blog posts,
 articles, and such.
 
-Submit Feedback
+Submit feedback
 ~~~~~~~~~~~~~~~
 
 The best way to send feedback is to file an issue at https://github.com/amjith/fuzzyfinder/issues.
 
-Get Started!
+Get started!
 ------------
 
 Ready to contribute? Here's how to set up `fuzzyfinder` for local development.
@@ -61,10 +61,13 @@ Ready to contribute? Here's how to set up `fuzzyfinder` for local development.
 
    Now you can make your changes locally.
 
-4. When you're done making changes, check that your changes pass the tests.
-   This project uses tox for running the tests on multiple versions of python::
+4. When you're done making changes, check that your changes pass the tests and
+   respect the project's code style. This project uses ``tox`` for running the
+   tests on multiple versions of Python (with ``pytest`` and ``coverage``),
+   and for formatting (with ``ruff``)::
 
-    $ tox
+    $ tox -e py38,py39,py310,py311,py312,py313  # add any other supported versions
+    $ tox -e style
 
 5. Commit your changes and push your branch to GitHub::
 
