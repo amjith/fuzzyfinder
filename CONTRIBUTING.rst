@@ -24,14 +24,14 @@ If you are reporting a bug, please include:
 Fix bugs
 ~~~~~~~~
 
-Look through the GitHub issues for bugs. Anything tagged with "bug"
-is open to whoever wants to implement it.
+Look through the GitHub issues for bugs. Anything tagged with `bug`
+is open to whomever wants to implement it.
 
 Implement features
 ~~~~~~~~~~~~~~~~~~
 
-Look through the GitHub issues for features. Anything tagged with "feature"
-is open to whoever wants to implement it.
+Look through the GitHub issues for features. Anything tagged with `feature`
+is open to whomever wants to implement it.
 
 Write documentation
 ~~~~~~~~~~~~~~~~~~~
@@ -61,10 +61,13 @@ Ready to contribute? Here's how to set up `fuzzyfinder` for local development.
 
    Now you can make your changes locally.
 
-4. When you're done making changes, check that your changes pass the tests.
-   This project uses tox for running the tests on multiple versions of python::
+4. When you're done making changes, check that your changes pass the tests and
+   respect the project's code style. This project uses ``tox`` for running the
+   tests on multiple versions of Python (with ``pytest`` and ``coverage``),
+   and for formatting (with ``ruff``)::
 
-    $ tox
+    $ tox -e py38,py39,py310,py311,py312,py313  # add any other supported versions
+    $ tox -e style
 
 5. Commit your changes and push your branch to GitHub::
 
