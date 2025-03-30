@@ -78,6 +78,18 @@ Usage
     >>> list(suggestions)
     ['aac', 'aaa', 'aab', 'ada']
 
+    >>> # Highlight matching substrings when printing to the terminal
+    >>> collection = ['apple', 'banana', 'grape', 'orange', 'pineapple']
+    >>> suggestions = fuzzyfinder('ape', collection, highlight=True)
+    >>> list(suggestions)
+    ['gr\x1b[42mape\x1b[0m', '\x1b[42map\x1b[0mpl\x1b[42me\x1b[0m', 'pine\x1b[42map\x1b[0mpl\x1b[42me\x1b[0m']
+
+    >>> # Custom highlighting (use with ANSI, HTML, etc.)
+    >>> parentheses = '(', ')'
+    >>> suggestions = fuzzyfinder('ape', collection, highlight=parentheses)
+    >>> list(suggestions)
+    ['gr(ape)', '(ap)pl(e)', 'pine(ap)pl(e)']
+
 Similar Projects
 ----------------
 
