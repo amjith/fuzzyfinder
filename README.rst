@@ -1,42 +1,52 @@
-===============================
+===========
 fuzzyfinder
-===============================
-
-.. image:: https://img.shields.io/travis/amjith/fuzzyfinder.svg
-        :target: https://travis-ci.org/amjith/fuzzyfinder
+===========
 
 .. image:: https://img.shields.io/pypi/v/fuzzyfinder.svg
-        :target: https://pypi.python.org/pypi/fuzzyfinder
+   :target: https://pypi.python.org/pypi/fuzzyfinder
+
+.. image:: https://img.shields.io/badge/github-fuzzyfinder-brightgreen?logo=github
+   :alt: GitHub Badge
+   :target: https://github.com/amjith/fuzzyfinder
+
+.. image:: https://img.shields.io/badge/docs-fuzzyfinder-hotpink?logo=readthedocs&logoColor=white
+   :alt: ReadTheDocs Badge
+   :target: https://fuzzyfinder.readthedocs.io/
 
 
-Fuzzy Finder implemented in Python. Matches partial string entries from a list
-of strings. Works similar to fuzzy finder in SublimeText and Vim's Ctrl-P
-plugin.
-
-* Documentation: https://fuzzyfinder.readthedocs.org.
-* Source: https://github.com/amjith/fuzzyfinder
+**fuzzyfinder** is a fuzzy finder implemented in Python. It matches partial
+string entries from a list of strings, and works similar to the fuzzy finder in
+SublimeText and Vim's Ctrl-P plugin.
 
 .. image:: https://raw.githubusercontent.com/amjith/fuzzyfinder/master/screenshots/pgcli-fuzzy.gif
+
+Some notable features of fuzzyfinder are:
+
+* **Simple**, easy to understand code.
+* **No external dependencies**, just the Python standard library.
+
+An in-depth overview of the algorithm behind fuzzyfinder is available in
+`this blog post`__.
+
+__ http://blog.amjith.com/fuzzyfinder-in-10-lines-of-python
 
 Quick Start
 -----------
 
+Installation
+^^^^^^^^^^^^
 ::
 
     $ pip install fuzzyfinder
 
-    or
-
-    $ easy_install fuzzyfinder
-
 Usage
------
+^^^^^
 
 .. code:: python
 
     >>> from fuzzyfinder import fuzzyfinder
 
-    >>> suggestions = fuzzyfinder('abc', ['defabca', 'abcd', 'aagbec', 'xyz', 'qux'])
+    >>> suggestions = fuzzyfinder('abc', ['acb', 'defabca', 'abcd', 'aagbec', 'xyz', 'qux'])
     >>> list(suggestions)
     ['abcd', 'defabca', 'aagbec']
 
@@ -46,6 +56,19 @@ Usage
     >>> list(suggestions)
     ['bc aa', 'qx ala', 'xy abca']
 
+    >>> # With the appropriate accessor you can pass non-string collections, too
+    >>> collection = [1234, 5678, 7537, 888, 57, 77]
+    >>> suggestions = fuzzyfinder('57', collection, accessor=str)
+    >>> list(suggestions)
+    [57, 5678, 7537]
+
+    >>> # Make filtering case-sensitive
+    >>> collection = ['bAB', 'aaB', 'Aab', 'xyz', 'adb', 'aAb']
+    >>> suggestions = fuzzyfinder('Ab', collection, ignore_case=False)
+    >>> list(suggestions)
+    ['aAb', 'Aab']
+
+    >>> # By default, elements with matches of same rank are sorted alpha-numerically
     >>> suggestions = fuzzyfinder('aa', ['aac', 'aaa', 'aab', 'xyz', 'ada'])
     >>> list(suggestions)
     ['aaa', 'aab', 'aac', 'ada']
@@ -55,18 +78,7 @@ Usage
     >>> list(suggestions)
     ['aac', 'aaa', 'aab', 'ada']
 
-Features
---------
-
-* Simple, easy to understand code.
-* No external dependencies, just the python std lib.
-
-How does it work
-----------------
-
-Blog post describing the algorithm: http://blog.amjith.com/fuzzyfinder-in-10-lines-of-python
-
 Similar Projects
 ----------------
 
-* https://github.com/seatgeek/fuzzywuzzy - Fuzzy matching and auto-correction using levenshtein distance.
+* https://github.com/seatgeek/thefuzz - Fuzzy matching and auto-correction using levenshtein distance.

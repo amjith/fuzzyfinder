@@ -1,22 +1,7 @@
-fuzzyfinder package
-===================
-
-Submodules
-----------
-
-fuzzyfinder.main module
------------------------
-
-.. automodule:: fuzzyfinder.main
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-
-Module contents
----------------
+API Reference
+=============
 
 .. automodule:: fuzzyfinder
-    :members:
-    :undoc-members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:

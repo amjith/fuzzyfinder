@@ -36,9 +36,8 @@ test:
 	tox
 
 docs:
-	rm -f docs/fuzzyfinder.rst
-	rm -f docs/modules.rst
 	sphinx-apidoc -o docs/ fuzzyfinder
+	rm docs/modules.rst
 	$(MAKE) -C docs clean
 	$(MAKE) -C docs html
 	open docs/_build/html/index.html
