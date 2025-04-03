@@ -1,11 +1,11 @@
 .PHONY: help clean clean-build clean-pyc clean-test test docs
 
 help:
-	@echo "clean - remove all build, test, coverage and Python artifacts"
+	@echo "clean - remove all artifacts"
 	@echo "clean-build - remove build artifacts"
 	@echo "clean-pyc - remove Python file artifacts"
-	@echo "clean-test - remove test, coverage and formatting artifacts"
-	@echo "test - run tests with tox and format with ruff"
+	@echo "clean-test - remove test, coverage, typing and formatting artifacts"
+	@echo "test - test with coverage and pytest, check types with mypy, format with ruff"
 	@echo "docs - generate Sphinx HTML documentation, including API docs"
 
 clean: clean-build clean-pyc clean-test
@@ -30,6 +30,7 @@ clean-test:
 	rm -f .coverage
 	rm -fr htmlcov/
 	rm -fr .pytest_cache/
+	rm -fr .mypy_cache/
 	rm -fr .ruff_cache/
 
 test:
