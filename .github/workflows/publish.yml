@@ -29,6 +29,9 @@ jobs:
       - name: Run unit tests
         run: uvx tox -e py${{ matrix.python-version }}
 
+      - name: Run Typing Checks
+        run: uvx tox -e typing
+
       - name: Run Style Checks
         run: uvx tox -e style
 
