@@ -52,6 +52,11 @@ def dict_collection():
     ]
 
 
+@pytest.fixture
+def highlighting_collection():
+    return ["fuuz", "fuz", "fufuz", "afbcfdzeuffzhijkl", "python"]
+
+
 def test_substring_match(collection):
     text = "txt"
     results = fuzzyfinder(text, collection)
@@ -128,4 +133,76 @@ def test_no_alpha_num_sort():
     text = "fuz"
     results = fuzzyfinder(text, collection, sort_results=False)
     expected = ["zzfuz", "nnfuz", "aafuz", "ttfuz"]
+    assert list(results) == expected
+
+
+def test_highlight_boolean_input(highlighting_collection):
+    text = "fuz"
+    results = fuzzyfinder(text, highlighting_collection, highlight=True)
+    expected = [
+        "\033[42mfuz\033[0m",
+        "\033[42mfu\033[0mfu\033[42mz\033[0m",
+        "\033[42mfu\033[0mu\033[42mz\033[0m",
+        "a\033[42mf\033[0mbcfdze\033[42mu\033[0mff\033[42mz\033[0mhijkl",
+    ]
+    assert list(results) == expected
+
+
+@pytest.mark.parametrize(
+    ("color", "ansi_code"),
+    [
+        ("red", "\033[41m"),
+        ("green", "\033[42m"),
+        ("yellow", "\033[43m"),
+        ("blue", "\033[44m"),
+        ("magenta", "\033[45m"),
+        ("cyan", "\033[46m"),
+    ],
+)
+def test_highlight_string_input(highlighting_collection, color, ansi_code):
+    text = "fuz"
+    results = fuzzyfinder(text, highlighting_collection, highlight=color)
+    expected = [
+        f"{ansi_code}fuz\033[0m",
+        f"{ansi_code}fu\033[0mfu{ansi_code}z\033[0m",
+        f"{ansi_code}fu\033[0mu{ansi_code}z\033[0m",
+        f"a{ansi_code}f\033[0mbcfdze{ansi_code}u\033[0mff{ansi_code}z\033[0mhijkl",
+    ]
+    assert list(results) == expected
+
+
+def test_highlight_ansi_tuple_input(highlighting_collection):
+    text = "fuz"
+    bold_with_peach_bg = "\033[48;5;209m\033[1m", "\033[0m"
+    results = fuzzyfinder(text, highlighting_collection, highlight=bold_with_peach_bg)
+    expected = [
+        "\033[48;5;209m\033[1mfuz\033[0m",
+        "\033[48;5;209m\033[1mfu\033[0mfu\033[48;5;209m\033[1mz\033[0m",
+        "\033[48;5;209m\033[1mfu\033[0mu\033[48;5;209m\033[1mz\033[0m",
+        "a\033[48;5;209m\033[1mf\033[0mbcfdze\033[48;5;209m\033[1mu\033[0mff\033[48;5;209m\033[1mz\033[0mhijkl",
+    ]
+    assert list(results) == expected
+
+
+def test_highlight_html_tuple_input(highlighting_collection):
+    text = "fuz"
+    html_class = "<span class='highlight'>", "</span>"
+    results = fuzzyfinder(text, highlighting_collection, highlight=html_class)
+    expected = [
+        "<span class='highlight'>fuz</span>",
+        "<span class='highlight'>fu</span>fu<span class='highlight'>z</span>",
+        "<span class='highlight'>fu</span>u<span class='highlight'>z</span>",
+        "a<span class='highlight'>f</span>bcfdze<span class='highlight'>u</span>ff<span class='highlight'>z</span>hijkl",
+    ]
+    assert list(results) == expected
+
+
+def test_highlight_case_sensitive(cased_collection):
+    text = "mi"
+    parentheses = "(", ")"
+    results = fuzzyfinder(text, cased_collection, ignore_case=False, highlight=parentheses)
+    expected = [
+        "(mi)grations.doc",
+        "django_ad(mi)n_log.py",
+    ]
     assert list(results) == expected

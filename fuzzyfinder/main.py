@@ -1,12 +1,81 @@
 # -*- coding: utf-8 -*-
-from typing import Iterable, Iterator, Callable, Any
+from typing import Any, Callable, Iterable, Iterator, Tuple, Union
 import re
 from . import export
 
 
+COLORS_TO_ANSI = {
+    "red": "\033[41m",
+    "green": "\033[42m",
+    "yellow": "\033[43m",
+    "blue": "\033[44m",
+    "magenta": "\033[45m",
+    "cyan": "\033[46m",
+}
+ANSI_RESET = "\033[0m"
+
+
+def highlight_substring(
+    substring: str,
+    string: str,
+    highlight: Union[bool, str, Tuple[str, str]],
+    ignore_case: bool,
+) -> str:
+    """Apply `highlight` to contiguous chunks of `substring` within `string`."""
+    assert highlight, "called function when 'highlight' was falsy"
+    default_highlight = "green"
+    if highlight is True:
+        highlight = default_highlight
+    if isinstance(highlight, str):
+        highlight = COLORS_TO_ANSI[highlight.lower()], ANSI_RESET
+    assert isinstance(highlight, tuple), "incorrect type for 'highlight'"
+
+    # We apply to the main string, pairwise, styling prefixes and suffixes
+    # which mark the matched substring. We iterate over both the main string
+    # and the substring exactly once, and make sure that prefix-suffix pairs
+    # wrap entire chunks of adjacent matched characters as opposed to each
+    # character individually.
+    prefix, suffix = highlight
+    highlighted_string = ""
+    # We use an iterator for iterating over the main string. This ensures that:
+    # (1) for each substring character, we start iteration where we stopped for
+    # the previous substring character;
+    # (2) after matching the final substring character, the remainder of the
+    # main string's characters is preserved within the iterator.
+    string_iter = iter(string)
+    unpaired_prefix = False
+    for substring_char in substring:
+        for string_char in string_iter:
+            match = string_char == substring_char
+            case_insensitive_match = string_char.lower() == substring_char.lower()
+            if match or (ignore_case and case_insensitive_match):
+                if not unpaired_prefix:
+                    highlighted_string += prefix
+                    unpaired_prefix = True
+                highlighted_string += string_char
+                break
+            else:
+                if unpaired_prefix:
+                    highlighted_string += suffix
+                    unpaired_prefix = False
+                highlighted_string += string_char
+    # If the final match is between the last characters of both strings,
+    # a prefix is left unpaired, so we check for it here.
+    if unpaired_prefix:
+        highlighted_string += suffix
+    remainder = "".join(string_iter)
+    highlighted_string += remainder
+    return highlighted_string
+
+
 @export
 def fuzzyfinder(
-    input: str, collection: Iterable[Any], accessor: Callable[[Any], str] = lambda x: x, sort_results: bool = True, ignore_case: bool = True
+    input: str,
+    collection: Iterable[Any],
+    accessor: Callable[[Any], str] = lambda x: x,
+    sort_results: bool = True,
+    ignore_case: bool = True,
+    highlight: Union[bool, str, Tuple[str, str]] = False,
 ) -> Iterator[Any]:
     """Filter a collection of objects by fuzzy matching against an input string.
 
@@ -34,6 +103,21 @@ def fuzzyfinder(
             If this parameter is set to ``False``, the filtering is
             case-sensitive.
             Defaults to ``True``.
+        highlight:
+            Highlight the matching substrings when printed to the terminal, or
+            elsewhere.
+            If ``True``, when printed to the terminal, the matching substrings
+            will have the default highlight (*green*).
+            If this parameter is a ``str``, when printed to the terminal, the
+            matching substrings will be highlighted in the corresponding color.
+            Accepted values are: ``'red'``, ``'green'``, ``'yellow'``,
+            ``'blue'``, ``'magenta'``, and ``'cyan'``.
+            If this parameter is a ``tuple``, it must be a 2-tuple consisting
+            of a prefix and a suffix string. The prefix and suffix are
+            prepended  and appended to contiguous substring chunks, and can
+            range from anything like parentheses or ANSI escape codes to HTML
+            tags with class or style attributes.
+            Defaults to ``False``.
 
     Returns:
         Iterator[Any]:
@@ -57,6 +141,11 @@ def fuzzyfinder(
             suggestions.append((len(best.group(1)), best.start(), accessor(item), item))
 
     if sort_results:
-        return (z[-1] for z in sorted(suggestions))
+        results = (z[-1] for z in sorted(suggestions))
     else:
-        return (z[-1] for z in sorted(suggestions, key=lambda x: x[:2]))
+        results = (z[-1] for z in sorted(suggestions, key=lambda x: x[:2]))
+
+    if highlight:
+        results = (highlight_substring(input, result, highlight, ignore_case) for result in results)
+
+    return results
