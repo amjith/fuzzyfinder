@@ -27,7 +27,9 @@ def highlight_substring(
     if highlight is True:
         highlight = default_highlight
     if isinstance(highlight, str):
-        highlight = COLORS_TO_ANSI[highlight.lower()], ANSI_RESET
+        if not (ansi_code := COLORS_TO_ANSI.get(highlight.lower())):
+            raise ValueError(f"highlight, if a string, must be one of: {str(list(COLORS_TO_ANSI)).strip('[]')}")
+        highlight = ansi_code, ANSI_RESET
     assert isinstance(highlight, tuple), "incorrect type for 'highlight'"
 
     # We apply to the main string, pairwise, styling prefixes and suffixes
