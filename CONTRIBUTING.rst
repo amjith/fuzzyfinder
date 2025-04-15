@@ -62,11 +62,13 @@ Ready to contribute? Here's how to set up `fuzzyfinder` for local development.
    Now you can make your changes locally.
 
 4. When you're done making changes, check that your changes pass the tests and
-   respect the project's code style. This project uses ``tox`` for running the
-   tests on multiple versions of Python (with ``pytest`` and ``coverage``),
-   and for formatting (with ``ruff``)::
+   type checks, and respect the project's code style. This project uses ``tox``
+   for running tests on multiple versions of Python (with ``pytest`` and
+   ``coverage``), for type checking (with ``mypy``), and for formatting (with
+   ``ruff``)::
 
     $ tox -e py38,py39,py310,py311,py312,py313  # add any other supported versions
+    $ tox -e typing
     $ tox -e style
 
 5. Commit your changes and push your branch to GitHub::
