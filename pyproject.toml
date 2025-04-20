@@ -33,9 +33,6 @@ build-backend = "setuptools.build_meta"
 [tool.setuptools.packages.find]
 exclude = ["screenshots"]
 
-[tool.setuptools.dynamic]
-version = { attr = "fuzzyfinder.__version__" }
-
 [tool.ruff]
 line-length = 140
 exclude = ["docs"]
