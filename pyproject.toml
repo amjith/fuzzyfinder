@@ -3,11 +3,9 @@ name = "fuzzyfinder"
 dynamic = ["version"]
 description = "Fuzzy Finder implemented in Python."
 readme = "README.rst"
-requires-python = ">=3.8"
-license = {text = "BSD"}
-authors = [
-    {name = "Amjith Ramanujam", email = "amjith.r@gmail.com"}
-]
+requires-python = ">=3.10"
+license = { text = "BSD" }
+authors = [{ name = "Amjith Ramanujam", email = "amjith.r@gmail.com" }]
 urls = { "homepage" = "https://github.com/amjith/fuzzyfinder" }
 
 [project.optional-dependencies]
@@ -26,7 +24,7 @@ dev = [
 exclude = ["screenshots"]
 
 [tool.setuptools.dynamic]
-version = {attr = "fuzzyfinder.__version__"}
+version = { attr = "fuzzyfinder.__version__" }
 
 [tool.ruff]
 line-length = 140
