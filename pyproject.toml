@@ -20,6 +20,16 @@ dev = [
     "mypy>=1.15.0",
 ]
 
+[build-system]
+requires = [
+    "setuptools>=64.0",
+    "setuptools-scm>=8;python_version>='3.8'",
+    "setuptools-scm<8;python_version<'3.8'",
+]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
+
 [tool.setuptools.packages.find]
 exclude = ["screenshots"]
 

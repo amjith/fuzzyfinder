@@ -1,6 +1,7 @@
 # ruff: noqa
+import importlib.metadata
 
-__version__ = "2.2.0"
+__version__ = importlib.metadata.version("fuzzyfinder")
 
 __all__ = []
 
