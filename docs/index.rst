@@ -18,7 +18,7 @@ Welcome to fuzzyfinder's documentation!
 string entries from a list of strings, and works similar to the fuzzy finder in
 SublimeText and Vim's Ctrl-P plugin.
 
-.. image:: https://raw.githubusercontent.com/amjith/fuzzyfinder/master/screenshots/pgcli-fuzzy.gif
+.. image:: https://raw.githubusercontent.com/amjith/fuzzyfinder/master/screenshots/highlight-demo.gif
 
 Some notable features of fuzzyfinder are:
 
