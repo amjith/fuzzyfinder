@@ -3,6 +3,13 @@
 Changelog
 =========
 
+2.3.0 (2025-04-20)
+------------------
+
+* Add highlighting feature.
+* Add typing.
+* Drop official support for Python 3.9 and older.
+
 2.2.0 (2024-09-08)
 ------------------
 
