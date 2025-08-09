@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from typing import Any, Callable, Iterable, Iterator, Tuple, Union
+import operator
+from typing import Any, Callable, Iterable, Iterator, Optional, Tuple, Union
 import re
 from . import export
 
@@ -74,7 +75,7 @@ def highlight_substring(
 def fuzzyfinder(
     input: str,
     collection: Iterable[Any],
-    accessor: Callable[[Any], str] = lambda x: x,
+    accessor: Optional[Callable[[Any], str]] = None,
     sort_results: bool = True,
     ignore_case: bool = True,
     highlight: Union[bool, str, Tuple[str, str]] = False,
@@ -137,15 +138,17 @@ def fuzzyfinder(
     pat = "(?=({0}))".format(pat)  # lookahead regex to manage overlapping matches
     regex = re.compile(pat, re.IGNORECASE if ignore_case else 0)
     for item in collection:
-        r = list(regex.finditer(accessor(item)))
+        accessed_item = item if accessor is None else accessor(item)
+        r = tuple(regex.finditer(accessed_item))
         if r:
             best = min(r, key=lambda x: len(x.group(1)))  # find shortest match
-            suggestions.append((len(best.group(1)), best.start(), accessor(item), item))
+            suggestions.append((len(best.group(1)), best.start(), accessed_item, item))
 
     if sort_results:
-        results = (z[-1] for z in sorted(suggestions))
+        suggestions.sort()
     else:
-        results = (z[-1] for z in sorted(suggestions, key=lambda x: x[:2]))
+        suggestions.sort(key=lambda x: x[:2])
+    results: Iterator[Any] = map(operator.itemgetter(-1), suggestions)
 
     if highlight:
         results = (highlight_substring(input, result, highlight, ignore_case) for result in results)
