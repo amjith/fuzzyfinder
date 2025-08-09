@@ -67,6 +67,7 @@ Ready to contribute? Here's how to set up `fuzzyfinder` for local development.
    ``coverage``), for type checking (with ``mypy``), and for formatting (with
    ``ruff``)::
 
+    $ pip install tox
     $ tox -e py310,py311,py312,py313  # add any other supported versions
     $ tox -e typing
     $ tox -e style
